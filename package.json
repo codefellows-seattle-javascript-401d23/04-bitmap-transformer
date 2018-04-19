@@ -1,0 +1,23 @@
+{
+  "name": "04-bitmap-transformer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/colson10/04-bitmap-transformer.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/colson10/04-bitmap-transformer/issues"
+  },
+  "homepage": "https://github.com/colson10/04-bitmap-transformer#readme",
+  "devDependencies": {
+    "jest": "^22.4.3"
+  }
+}

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": ".eslint . && jest --coverage"
   },
   "repository": {
     "type": "git",
@@ -26,5 +26,8 @@
     "eslint-plugin-import": "^2.11.0",
     "eslint-plugin-jest": "^21.15.1",
     "jest": "^22.4.3"
+  },
+  "dependencies": {
+    "dotenv": "^5.0.1"
   }
 }

@@ -1,6 +1,7 @@
 
-# Lab 01: Node Ecosystem and Test-Driven Development
-**Author**: Dawn Aldrich, Jennifer Piper, Sean Miller
+# Lab 04: Bitmap Transformer
+
+**Authors**: Dawn Aldrich, Jennifer Piper, Sean Miller
 
 ## Modules:
 

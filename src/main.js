@@ -9,9 +9,9 @@ const parseBitmap = require('./lib/parse-bitmap');
 
 
 //  use fs to read a bitmap file...
-fs.readFile(`${__dirname}/assets/house.bmp`, (error, buffer) => {
+fs.readFile(`${__dirname}/__test__/assets/house.bmp`, (error, buffer) => {
   if (error) {
     throw error;
   }
-  const parseBitmap = parseBitmap.parse(buffer);
+  parseBitmap.parse(buffer);
 });

@@ -6,3 +6,5 @@ describe('initial test to make travis works', () => {
   });
 });
 // making comment for new pull request
+
+// adding empty end line for .babelrc

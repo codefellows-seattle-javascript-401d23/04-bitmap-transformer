@@ -1,12 +1,12 @@
 'use strict';
 
 const parseBitmap = module.exports = {};
-const monoChrome = require('./monoChrome');
 
-parseBitmap.parse = (error, buffer, tType) => {
+parseBitmap.parse = (error, buffer) => {
   if (error) {
     throw error;
   }
+  
   const parsedBitmap = {};
   const FILE_SIZE_OFFSET = 2;
   const HEIGHT_OFFSET = 22;
@@ -21,9 +21,5 @@ parseBitmap.parse = (error, buffer, tType) => {
   parsedBitmap.colorTable = buffer.slice(COLOR_TABLE_OFFSET, COLOR_TABLE_SIZE);
 
   console.log(parsedBitmap);
-
-  if (tType === monoChrome) {
-    monoChrome.transform(parsedBitmap);
-  }
-  return parsedBitmap;
+  return (parsedBitmap, buffer);
 };

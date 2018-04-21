@@ -2,13 +2,21 @@
 
 const fs = require('fs');
 const parseBitmap = require('./lib/parse-bitmap');
-// const testBuffer = Buffer.from('My cat is cute too.');
-// console.log(testBuffer.toString());
+const changeColors = require('./lib/invert-colors');
+
 
 fs.readFile(`${__dirname}/assets/house.bmp`, (error, buffer) => {
   if (error) {
     throw error;
   }
-  const parsedBitmap = parseBitmap.parse(buffer);
-  console.log(parsedBitmap);
+  let bitmap = parseBitmap.parse(buffer);
+  console.log(bitmap);
+
+ // bitmap = changeColors.invert(buffer);
+
+ // console.log(bitmap);
+  fs.writeFile(`${__dirname}/assets/newHouse.bmp`, buffer, (err) => {
+    if (err) throw err;
+    console.log('buffer written to newHouse.bmp');
+  });
 });

@@ -11,7 +11,10 @@ parseBitmap.parse = (buffer) => {
   parsedBitmap.type = buffer.toString('utf-8', 0, 2);
   parsedBitmap.fileSize = buffer.readInt32LE(FILE_SIZE_OFFSET);
   parsedBitmap.height = buffer.readInt32LE(HEIGHT_OFFSET);
+
+  // buffer.write('ff', COLOR_TABLE_OFFSET, COLOR_TABLE_SIZE, 'hex');
   parsedBitmap.colorTable = buffer.slice(COLOR_TABLE_OFFSET, COLOR_TABLE_SIZE);
+
 
   return parsedBitmap;
 }

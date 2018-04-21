@@ -1,5 +1,6 @@
 const fs = require('fs');
 const parseBitmap = require('./parseBitmap');
+const monoChrome = require('./monoChrome');
 
 // const parseBitmap = require('./lib/parse-bitmap');
 
@@ -8,11 +9,23 @@ const parseBitmap = require('./parseBitmap');
 
 console.log('SUP');
 
-fs.readFile(`${__dirname}/__test__/asset/test.bmp`, (error, data) => {
-  if (error) {
-    throw error;
-  } else {
-    console.log(data);
-    parseBitmap.parse(error, data);
-  }
-});
+const fileReader = (readPath, writePath, transform) => {
+  fs.readFile(readPath, (error, data) => {
+    if (error) {
+      throw error;
+    } else {
+      console.log(data);
+
+      if (transform === 'monochrome') {
+        monoChrome.transform(writePath, (err, newData) => {
+          fs.writeFile(writePath, newData, (err) => {
+            if (err) throw err;
+            console.log('new file saved');
+          });     
+        });
+      }
+    }
+  });
+};
+
+fileReader('./src/__test__/asset/test.bmp', './src/__test__/asset/test2.bmp', 'monochrome');

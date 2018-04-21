@@ -15,19 +15,17 @@ const fileReader = (readPath, writePath, transform) => {
       throw error;
     } else {
       console.log(data);
-      let parsedBitmap = null;
-      parsedBitmap = parseBitmap.parse(error, data);
+
       if (transform === 'monochrome') {
-        monoChrome.transform(writePath, parsedBitmap[0]);
+        monoChrome.transform(writePath, (err, newData) => {
+          fs.writeFile(writePath, newData, (err) => {
+            if (err) throw err;
+            console.log('new file saved');
+          });     
+        });
       }
     }
   });
-
-  fs.writeFile(writePath, parsedBitmap[1], (err) => {
-    if (err) throw err;
-    console.log('new file saved');
-  });
-
 };
 
-fileReader('./src/__test__/asset/test.bmp', './src/__test__/asset/test.bmp', 'monochrome');
+fileReader('./src/__test__/asset/test.bmp', './src/__test__/asset/test2.bmp', 'monochrome');

@@ -21,5 +21,5 @@ parseBitmap.parse = (error, buffer) => {
   parsedBitmap.colorTable = buffer.slice(COLOR_TABLE_OFFSET, COLOR_TABLE_SIZE);
 
   console.log(parsedBitmap);
-  return (parsedBitmap, buffer);
+  return (parsedBitmap);
 };

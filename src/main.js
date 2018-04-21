@@ -8,11 +8,14 @@ const parseBitmap = require('./parseBitmap');
 
 console.log('SUP');
 
-fs.readFile(`${__dirname}/__test__/asset/test.bmp`, (error, data) => {
-  if (error) {
-    throw error;
-  } else {
-    console.log(data);
-    parseBitmap.parse(error, data);
-  }
-});
+const fileReader = (readPath, writePath, transform) => {
+
+  fs.readFile(readPath, (error, data) => {
+    if (error) {
+      throw error;
+    } else {
+      console.log(data);
+      parseBitmap.parse(error, data);
+    }
+  });
+};

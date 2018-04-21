@@ -2,21 +2,33 @@
 
 const fs = require('fs');
 const parseBitmap = require('./lib/parse-bitmap');
-const changeColors = require('./lib/invert-colors');
+const invertColors = require('./lib/invert-colors');
+// const lightenColors = require('./lib/lighten-colors');
 
+// todo: take in <input file name>, <output file name>, <transform> from user
 
-fs.readFile(`${__dirname}/assets/house.bmp`, (error, buffer) => {
+const inputPath = `${__dirname}/assets/house.bmp`;
+const outputPath = `${__dirname}/assets/newBitmap.bmp`;
+// const transform = 'lighten';
+const transform = 'invert';
+
+fs.readFile(inputPath, (error, buffer) => {
   if (error) {
     throw error;
   }
-  let bitmap = parseBitmap.parse(buffer);
-  console.log(bitmap);
+  console.log(parseBitmap.parse(buffer));
 
- // bitmap = changeColors.invert(buffer);
+  // todo: maybe move 'if' logic into a file that takes in transform name and buffer, handles transform, and returns transformed buffer
+  if (transform === 'invert') {
+    invertColors.invert(buffer, (invertedBuffer) => {
+      fs.writeFile(outputPath, invertedBuffer, (err) => {
+        if (err) {
+          throw err;
+        }
+        console.log('buffer written to newBitmap.bmp');
+      });
+    });
+  }
 
- // console.log(bitmap);
-  fs.writeFile(`${__dirname}/assets/newHouse.bmp`, buffer, (err) => {
-    if (err) throw err;
-    console.log('buffer written to newHouse.bmp');
-  });
+  console.log(parseBitmap.parse(buffer));
 });

@@ -17,11 +17,11 @@ const fileReader = (readPath, writePath, transform) => {
       console.log(data);
 
       if (transform === 'monochrome') {
-        monoChrome.transform(writePath, (err, newData) => {
+        monoChrome.transform(data, (newData) => {
           fs.writeFile(writePath, newData, (err) => {
             if (err) throw err;
             console.log('new file saved');
-          });     
+          });
         });
       }
     }

@@ -17,8 +17,7 @@ fs.readFile(inputPath, (error, buffer) => {
     throw error;
   }
   console.log(parseBitmap.parse(buffer));
-
-  // todo: maybe move 'if' logic into a file that takes in transform name and buffer, handles transform, and returns transformed buffer
+  
   if (transform === 'invert') {
     invertColors.invert(buffer, (invertedBuffer) => {
       fs.writeFile(outputPath, invertedBuffer, (err) => {

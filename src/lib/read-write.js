@@ -14,7 +14,7 @@ fileHandler.read = (filePath, callback) => {
 };
 
 fileHandler.write = (buffer) => {
-  return fs.writeFile(`${__dirname}/../__test__/assets/house-flip.bmp`, buffer, () => {
-    logger.log(logger.VERBOSE, 'Tried to change color');
+  return fs.writeFile(`${__dirname}/../__test__/assets/house-test-transform.bmp`, buffer, () => {
+    logger.log(logger.VERBOSE, 'Testing transforms!!');
   });
 };

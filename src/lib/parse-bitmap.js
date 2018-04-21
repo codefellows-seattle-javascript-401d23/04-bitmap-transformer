@@ -4,6 +4,9 @@ const parseBitmap = module.exports = {};
 
 parseBitmap.parse = (buffer) => {
   // TODO: ADD ERROR CHECKS
+  // if (error) {
+  //   throw error;
+  // }
   const parsedBitmap = {};
   const FILE_SIZE_OFFSET = 2;
   const HEIGHT_OFFSET = 22;
@@ -16,7 +19,7 @@ parseBitmap.parse = (buffer) => {
   // Vinicio - 4 bytes * 8 = 32 bits
   parsedBitmap.fileSize = buffer.readInt32LE(FILE_SIZE_OFFSET);
   parsedBitmap.height = buffer.readInt32LE(HEIGHT_OFFSET);
-  parsedBitmap.colorTable = buffer.slice(COLOR_TABLE_OFFSET,COLOR_TABLE_SIZE);
+  parsedBitmap.colorTable = buffer.slice(COLOR_TABLE_OFFSET, COLOR_TABLE_SIZE);
 
   return parsedBitmap;
 };

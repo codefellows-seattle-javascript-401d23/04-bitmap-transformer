@@ -2,19 +2,23 @@
 
 const fs = require('fs');
 
-
 const fileReader = module.exports = {};
 
-fileReader.readFirstNCharactersAsync = (filePath, callback) => {
-  console.log(`Display ${filePath}`);
-  return fs.readFile( 
-    filePath,
-    (error, result) => { 
-      if (error) {
-        throw error;
-      }
-      return callback(null, result.toString('utf8', 0));
-    },
-  );
+fileReader.readAsync = (bitmapPath, callback) => {
+  try {
+    fs.readFile(
+      bitmapPath,
+      (error, result) => {
+        if (typeof bitmapPath !== 'string') {
+          throw error;
+        }
+        const bitmap = callback(Buffer.from(result));
+        return bitmap;
+      },
+    );
+  } catch (error) {
+    console.log(error);
+  }
+  return undefined;
 };
 

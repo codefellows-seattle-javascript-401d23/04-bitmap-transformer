@@ -12,19 +12,16 @@ const bitmapPath = `${__dirname}/assets/house.bmp`;
 const imageConverter = (path) => {
   fileReader.readAsync(path, (buffer) => {
     parseBitmap.parse(buffer, (bitmapObj) => {
-      console.log(bitmapObj);
-        console.log('raster size', bitmapObj.rasterDataString.length);
+      // console.log(bitmapObj.data.length, bitmapObj.colorTable);
+      //   console.log('raster size', bitmapObj.rasterDataString.length);
       whiteout.convertImage(bitmapObj, (newObj) => {
+        // console.log('new', newObj.data.length, newObj.colorTable);
         fs.writeFileSync(`${__dirname}/assets/whiteout.bmp`, newObj.data);
-        // console.log('new', bitmapObj.colorTable);
       });
-      redden.convertImage(bitmapObj, (newBuffer) => {
-        console.log('buffer2', buffer0);
-        // console.log(('new length', newBuffer.length));
-        // console.log('header length', )
-        // console.log('lengths 3', bitmapObj.colorTable.length);
-        fs.writeFileSync(`${__dirname}/assets/redden.bmp`, newBuffer);
-        // console.log('newBuffer', newBuffer.length);
+      redden.convertImage(bitmapObj, (newObj) => {
+        console.log('original', bitmapObj.data.length);
+        fs.writeFileSync(`${__dirname}/assets/redden.bmp`, newObj.data);
+        console.log('newBuffer', newObj.data.length);
 
       });
     });

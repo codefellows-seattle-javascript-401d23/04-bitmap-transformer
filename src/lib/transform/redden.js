@@ -4,17 +4,13 @@ const redden = module.exports = {};
 
 redden.convertImage = (bitmapObj, callback) => {
 
-  // bitmapObj.colorArray.forEach((hexString) => {
-  //   hexString.replace(/a/g, '9');
-  // });
+  bitmapObj.colorArray.forEach((hexString) => {
+    hexString.replace(/a/g, '9');
+  });
 
-  let HexString = bitmapObj.colorArray.join('');
-  let modifiedHexString = HexString.replace(/a/g, '9');
+  let modifiedHexString = bitmapObj.colorArray.join('');
 
-  bitmapObj.colorTable.fill(modifiedHexString, 0, bitmapObj.colorTable.length)
+  bitmapObj.colorTable = bitmapObj.colorTable.fill(modifiedHexString);
 
-  // const newBuffer = Buffer.alloc(66616, `${bitmapObj.headersString}${modifiedHexString}${bitmapObj.rasterDataString}`, 'hex');
-
-  // console.log('newColorArray', modifiedHexString);
   return callback(bitmapObj);
 };

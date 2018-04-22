@@ -12,8 +12,7 @@ fileReader.readAsync = (bitmapPath, callback) => {
         if (typeof bitmapPath !== 'string') {
           throw error;
         }
-        const bitmap = callback(Buffer.from(result));
-        return bitmap;
+        return callback(Buffer.from(result));
       },
     );
   } catch (error) {

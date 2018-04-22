@@ -1,7 +1,3 @@
-// Transform types:
-// 2. Greyscale
-// 4. Border?
-
 const fileHandler = require('./read-write');
 
 const transform = module.exports = {};
@@ -46,4 +42,3 @@ transform.spring = (object) => {
   }
   fileHandler.write(object.allData);
 };
-

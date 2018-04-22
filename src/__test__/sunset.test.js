@@ -1,60 +1,64 @@
-// 'use strict';
+'use strict';
 
-// const fs = require('fs');
-// const sunset = require('../lib/sunset.js');
+const fs = require('fs');
+const fileReader = require('../lib/main.js');
 
-// const files = [
-//   `${__dirname}/../assets/test1.bmp`,
-//   `${__dirname}/../assets/test2.bmp`,
-//   `${__dirname}/../assets/test3.bmp`,
-// ];
+const orangify = require('../lib/orangify');
+const invert = require('../lib/invert');
+const nightVision = require('../lib/nightVision');
+const sunset = require('../lib/sunset');
 
-// const badFiles = [
-//   `${__dirname}/../assets/bad1.bmp`,
-//   `${__dirname}/../assets/bad1.bmp`,
-//   `${__dirname}/../assets/bad1.bmp`,
-// ];
+const files = [
+  `${__dirname}/asset/test1.bmp`,
+  `${__dirname}/asset/test2.bmp`,
+  `${__dirname}/asset/test3.bmp`,
+];
 
-// const mockData = [];
-// const compare2 = [];
+const transformFiles = [
+  `${__dirname}/asset/orangify.bmp`,
+  `${__dirname}/asset/sunset.bmp`,
+  `${__dirname}/asset/nightvision.bmp`,
+];
 
-// // runs before all it/test blocks
+const mockData = [];
+const transformArray = [];
 
-// beforeAll((done) => {
-//   return fs.readFile(files[0], 'utf8', (err1, data1) => {
-//     mockData.push(data1);
-//     return fs.readFile(files[1], 'utf8', (err2, data2) => {
-//       mockData.push(data2);
-//       return fs.readFile(files[2], 'utf8', (err3, data3) => {
-//         mockData.push(data3);
-//         done();
-//       });
-//     });
-//   });
-// });
+beforeAll((done) => {
+  return fs.readFile(files[0], 'utf8', (err1, data1) => {
+    mockData.push(data1);
+    return fs.readFile(files[1], 'utf8', (err2, data2) => {
+      mockData.push(data2);
+      return fs.readFile(files[2], 'utf8', (err3, data3) => {
+        mockData.push(data3);
+        done();
+      });
+    });
+  });
+});
+
+beforeAll((done) => {
+  return fs.readFile(transformFiles[0], 'utf8', (err1, data1) => {
+    transformArray.push(data1);
+    return fs.readFile(transformFiles[1], 'utf8', (err2, data2) => {
+      transformArray.push(data2);
+      return fs.readFile(transformFiles[2], 'utf8', (err3, data3) => {
+        transformArray.push(data3);
+        done();
+      });
+    });
+  });
+});
   
-// describe('testing file reader module', () => {
-//   it('should return an array of text equal to COMPARE1 array', () => {
-//     return fileReader.readFiles(files, (data) => {
-//       compare2.push(data);
-//       if (compare2.length === mockData.length) {
-//         expect(compare2).toEqual(mockData);
-//       }
-//     });
-//   });
+describe('testing image transform function', () => {
+  it('should transform an image to be orangified', () => {
+    orangify.transform(files[0], (newData) => {
+      expect(newData).toEqual(transformArray[0]);
+    });
+  });
 
 
-  
-//   it('should err out for nonexistant first file', () => {
-//     return fileReader.readFiles(badFiles, (err) => {
-//       expect(err.cause).toEqual('ENOENT');
-//     });
+//   it('should be a bm', () => {
+//     const header = mockData[0].toString('utf8', 0, 2);
+//     expect(header).toEqual('BM');
 //   });
-  
-//   it('should throw error for not receiving an array of paths', () => {
-//     const notArray = 'not an array';
-//     expect(() => {
-//       fileReader.readFiles(notArray, () => {});
-//     }).toThrow(`${notArray} is not an array`);
-//   });
-// });
+});

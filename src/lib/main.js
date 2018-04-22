@@ -4,6 +4,7 @@ const invert = require('./invert');
 const nightVision = require('./nightVision');
 const sunset = require('./sunset');
 
+
 const fileReader = (readPath, writePath, transform) => {
   fs.readFile(readPath, (error, data) => {
     if (error) {
@@ -50,4 +51,4 @@ const fileReader = (readPath, writePath, transform) => {
   });
 };
 
-fileReader('./src/__test__/asset/test.bmp', `./src/__test__/asset/test${process.argv[3]}.bmp`, process.argv[4]);
+fileReader('./src/__test__/asset/test.bmp', `./src/__test__/asset/test${process.argv[2]}.bmp`, process.argv[3]);

@@ -1,31 +1,44 @@
-// Transform types:
-// 1. Flip vertically
-// 2. Greyscale
-// 3. Watermark?
-// 4. Border?
-
 const fileHandler = require('./read-write');
 
 const transform = module.exports = {};
 
-transform.flip = (object) => {
-  // console.log(object.height);
-  for (let i = object.COLOR_TABLE_OFFSET; i < 10; i++) {
-    object.allData.write('\xaa', 0, 2);
+transform.darken = (object) => {
+  const startValue = object.COLOR_TABLE_OFFSET;
+  const size = object.COLOR_TABLE_SIZE;
+  for (let i = startValue; i < startValue + size; i++) {
+    const transformValue = (object.allData[i] / 4).toString(16);
+    object.allData.write(transformValue, i, 'hex');
   }
-  // object.allData.write('a', object.COLOR_TABLE_OFFSET, 1000);
-  // console.log(object.colorTable);
   fileHandler.write(object.allData);
 };
 
-// transform.greyscale = (object) => {
-//   // code
-// };
-//
-// transform.watermark = (object) => {
-//   // code
-// };
-//
-// transform.border = (object) => {
-//   // code
-// };
+transform.random = (object, number) => {
+  const startValue = object.COLOR_TABLE_OFFSET;
+  const size = object.COLOR_TABLE_SIZE;
+  for (let i = startValue; i < startValue + size; i++) {
+    const transformValue = (object.allData[i] * number).toString(16);
+    object.allData.write(transformValue, i, 'hex');
+  }
+  fileHandler.write(object.allData);
+};
+
+transform.invert = (object) => {
+  const startValue = object.COLOR_TABLE_OFFSET;
+  const size = object.COLOR_TABLE_SIZE;
+  for (let i = startValue; i < startValue + size; i++) {
+    const transformValue = (255 - object.allData[i]).toString(16);
+    object.allData.write(transformValue, i, 'hex');
+  }
+  fileHandler.write(object.allData);
+};
+
+transform.spring = (object) => {
+  const startValue = object.COLOR_TABLE_OFFSET;
+  const size = object.COLOR_TABLE_SIZE;
+  for (let i = startValue; i < startValue + size; i += 2) {
+    const transformValue = ((
+      object.allData[i] + object.allData[i + 1] + object.allData[i + 2]) / 3).toString(16);
+    object.allData.write(transformValue, i, 3, 'hex');
+  }
+  fileHandler.write(object.allData);
+};

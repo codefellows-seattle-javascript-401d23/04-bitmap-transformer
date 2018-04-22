@@ -50,4 +50,4 @@ const fileReader = (readPath, writePath, transform) => {
   });
 };
 
-fileReader('./src/__test__/asset/test.bmp', './src/__test__/asset/test2.bmp', 'invert');
+fileReader('./src/__test__/asset/test.bmp', `./src/__test__/asset/test${process.argv[3]}.bmp`, process.argv[4]);

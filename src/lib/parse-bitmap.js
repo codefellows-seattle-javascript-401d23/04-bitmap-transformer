@@ -52,6 +52,16 @@ parseBitmap.parse = (buffer, transformMethod, callback, callback2) => {
     // console.log(this.colorTableBuffer.toString('hex'));
     return this;
   };
+  BitMapData.prototype.randScale = function () {
+    for (let i = 0; i < this.colorTableBuffer.length; i += 4) {
+      this.colorTableBuffer[i + 10] = 0;
+      if (i > 5) {
+        this.colorTableBuffer[i + 3] = 1;
+      }
+    }
+    // console.log(this.colorTableBuffer.toString('hex'));
+    return this;
+  };
 
   // new instance of the constructor
   const bitmap = new BitMapData(buffer);

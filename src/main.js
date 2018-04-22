@@ -1,13 +1,8 @@
 const fs = require('fs');
-const parseBitmap = require('./parseBitmap');
-const monoChrome = require('./monoChrome');
-
-// const parseBitmap = require('./lib/parse-bitmap');
-
-// import { fstat } from "fs";
-
-
-console.log('SUP');
+const orangify = require('./orangify');
+const invert = require('./invert');
+const nightVision = require('./nightVision');
+const sunset = require('./sunset');
 
 const fileReader = (readPath, writePath, transform) => {
   fs.readFile(readPath, (error, data) => {
@@ -16,8 +11,35 @@ const fileReader = (readPath, writePath, transform) => {
     } else {
       console.log(data);
 
-      if (transform === 'monochrome') {
-        monoChrome.transform(data, (newData) => {
+      if (transform === 'invert') {
+        invert.transform(data, (newData) => {
+          fs.writeFile(writePath, newData, (err) => {
+            if (err) throw err;
+            console.log('new file saved');
+          });
+        });
+      }
+
+      if (transform === 'orangify') {
+        orangify.transform(data, (newData) => {
+          fs.writeFile(writePath, newData, (err) => {
+            if (err) throw err;
+            console.log('new file saved');
+          });
+        });
+      }
+
+      if (transform === 'nightvision') {
+        nightVision.transform(data, (newData) => {
+          fs.writeFile(writePath, newData, (err) => {
+            if (err) throw err;
+            console.log('new file saved');
+          });
+        });
+      }
+
+      if (transform === 'sunset') {
+        sunset.transform(data, (newData) => {
           fs.writeFile(writePath, newData, (err) => {
             if (err) throw err;
             console.log('new file saved');
@@ -28,4 +50,4 @@ const fileReader = (readPath, writePath, transform) => {
   });
 };
 
-fileReader('./src/__test__/asset/test.bmp', './src/__test__/asset/test2.bmp', 'monochrome');
+fileReader('./src/__test__/asset/test.bmp', './src/__test__/asset/test2.bmp', 'invert');

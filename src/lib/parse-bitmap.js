@@ -1,4 +1,5 @@
 const transform = require('./transform');
+const fileHandler = require('./read-write');
 const logger = require('./logger');
 
 const parseBitmap = module.exports = {};
@@ -18,8 +19,8 @@ parseBitmap.parse = (error, buffer, transformType) => {
 
   const newFilePath = `${__dirname}/../assets/${process.argv[3]}`;
 
-  if (transformType === 'random') { transform.random(bitmapInfo, randomNumber, newFilePath); }
-  if (transformType === 'darken') { transform.darken(bitmapInfo, newFilePath); }
-  if (transformType === 'invert') { transform.invert(bitmapInfo, newFilePath); }
-  if (transformType === 'spring') { transform.spring(bitmapInfo, newFilePath); }
+  if (transformType === 'random') { transform.random(bitmapInfo, randomNumber, newFilePath, fileHandler.write); }
+  if (transformType === 'darken') { transform.darken(bitmapInfo, newFilePath, fileHandler.write); }
+  if (transformType === 'invert') { transform.invert(bitmapInfo, newFilePath, fileHandler.write); }
+  if (transformType === 'spring') { transform.spring(bitmapInfo, newFilePath, fileHandler.write); }
 };

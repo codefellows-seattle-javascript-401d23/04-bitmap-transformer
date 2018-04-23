@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "eslint .",
     "test": "eslint . && jest --coverage",
-    "testjest": "jest --coverage"
+    "testjest": "jest --verbose"
   },
   "keywords": [],
   "author": "",

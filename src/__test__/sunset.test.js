@@ -48,17 +48,28 @@ beforeAll((done) => {
     });
   });
 });
-  
+
+describe('testing the file Reader function', () => {
+  it('should transform mockdata[0] to be equal to transformArray[0] ', () => {
+    orangify.transform(mockData[0], (newData) => {
+      expect(newData).toEqual(transformArray[0]);
+    });// orange
+  });// it
+});// describe
+
+
+// added done keyword
 describe('testing image transform function', () => {
-  it('should transform an image to be orangified', () => {
+  it('should transform an image to be orangified', (done) => {
     orangify.transform(files[0], (newData) => {
       expect(newData).toEqual(transformArray[0]);
+      done();
     });
   });
 
 
-//   it('should be a bm', () => {
-//     const header = mockData[0].toString('utf8', 0, 2);
-//     expect(header).toEqual('BM');
-//   });
+  // it('should be a bm', () => {
+  //   const header = mockData[0].toString('utf8', 0, 2);
+  //   expect(header).toEqual('BM');
+  // });
 });

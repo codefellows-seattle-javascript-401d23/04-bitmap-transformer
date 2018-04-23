@@ -1,9 +1,11 @@
 const transform = require('./transform');
+const logger = require('./logger');
 
 const parseBitmap = module.exports = {};
 
-parseBitmap.parse = (error, buffer) => {
+parseBitmap.parse = (error, buffer, transformType) => {
   if (error) {
+    logger.log(logger.ERROR, `parseBitmap.parse: ${error}`);
     throw error;
   }
   const bitmapInfo = {};
@@ -14,8 +16,10 @@ parseBitmap.parse = (error, buffer) => {
   bitmapInfo.COLOR_TABLE_SIZE = 1000;
   bitmapInfo.allData = buffer;
 
-  if (process.argv[4] === 'random') { transform.random(bitmapInfo, randomNumber); }
-  if (process.argv[4] === 'darken') { transform.darken(bitmapInfo); }
-  if (process.argv[4] === 'invert') { transform.invert(bitmapInfo); }
-  if (process.argv[4] === 'spring') { transform.spring(bitmapInfo); }
+  const newFilePath = `${__dirname}/../assets/${process.argv[3]}`;
+
+  if (transformType === 'random') { transform.random(bitmapInfo, randomNumber, newFilePath); }
+  if (transformType === 'darken') { transform.darken(bitmapInfo, newFilePath); }
+  if (transformType === 'invert') { transform.invert(bitmapInfo, newFilePath); }
+  if (transformType === 'spring') { transform.spring(bitmapInfo, newFilePath); }
 };

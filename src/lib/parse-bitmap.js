@@ -28,8 +28,8 @@ parseBitmap.parse = (buffer, callback) => {
   parsedBitmap.height = buffer.readInt32LE(HEIGHT_OFFSET);
   parsedBitmap.headersString = buffer.toString('hex', 0, 54).length;
   parsedBitmap.colorTable = buffer.slice(COLOR_TABLE_OFFSET, COLOR_TABLE_SIZE);
-  parsedBitmap.colorSize = buffer.toString('hex', COLOR_TABLE_OFFSET, COLOR_TABLE_SIZE).length;
   parsedBitmap.colorArray = parsedBitmap.colorTable.toString('hex').split(/(\w{8})/).filter(x => x !== '');
+  parsedBitmap.colorSize = buffer.toString('hex', COLOR_TABLE_OFFSET, COLOR_TABLE_SIZE).length;
   parsedBitmap.rasterDataString = buffer.toString('hex', RASTER_DATA_OFFSET).length;
   parsedBitmap.bitCount = buffer.readInt32LE(BITCOUNT_OFFSET);
 

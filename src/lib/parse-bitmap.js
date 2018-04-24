@@ -51,6 +51,13 @@ parseBitmap.parse = (buffer, transformMethod, callback) => {
       }
       return this;
     }
+    nightVision() {
+      for (let i = 0; i < this.colorTableBuffer.length; i += 4) {
+        this.colorTableBuffer[i + 12] = 1;
+        this.colorTableBuffer[i + 6] = 1;
+      }
+      return this;
+    }
 
     somethingGreen() {
       for (let i = 8; i < this.colorTableBuffer.length; i += 8) {

@@ -19,10 +19,10 @@ This function takes an image and inverts it's original colors.
 This function takes an image and turns all colors to light green and soft pink resulting in a spring themed image. 
 
 ### log: 
-4-20-18: Program successfully prints a new copy of the original file
-4-21-18: Added 4 new transform functions that specifically manipulate the colors of the inputed image. 
-4-21-18: User can now input the name of the desired image file in the command line and receive a transformed image.
-4-21-18: All tests pass. 
+4-20-18: Program successfully prints a new copy of the original file <br/>
+4-21-18: Added 4 new transform functions that specifically manipulate the colors of the inputed image. <br/>
+4-21-18: User can now input the name of the desired image file in the command line and receive a transformed image.<br/>
+4-21-18: All tests pass. <br/>
 
 ### Collaborators:
 - Sarah Geyer

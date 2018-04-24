@@ -48,25 +48,35 @@ beforeAll((done) => {
     });
   });
 });
-  
+
+describe('testing the file Reader function', () => {
+  it('should transform mockdata[0] to be equal to transformArray[0] ', () => {
+    orangify.transform(mockData[0], (newData) => {
+      expect(newData).toEqual(transformArray[0]);
+    });// orange
+  });// it
+});// describe
+
+
+// added done keyword
 describe('testing image transform function', () => {
+
   it('should transform an image to be orangified', () => {
     orangify.transform(mockData[0], (newData) => {
-      console.log('new data: ', newData);
       expect(newData).toEqual(transformArray[0]);
+      done();
     });
   });
 
   it('should transform an image to be nightvision', () => {
-    nightVision.transform(mockData[0], (newData) => {
-      console.log('new data: ', newData);
+    nightVision.transform(mockData[2], (newData) => {
       expect(newData).toEqual(transformArray[2]);
     });
   });
 
+  
   it('should transform an image to be sunset', () => {
-    sunset.transform(mockData[0], (newData) => {
-      console.log('new data: ', newData);
+    sunset.transform(mockData[1], (newData) => {
       expect(newData).toEqual(transformArray[1]);
     });
   });

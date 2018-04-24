@@ -1,6 +1,6 @@
 'use strict';
 
-process.argv;
+const imageConverter = module.exports = {};
 
 const fs = require('fs');
 const fileReader = require('./lib/reader');
@@ -11,7 +11,6 @@ const yellowfy = require('./lib/transform/yellowfy');
 const nightVision = require('./lib/transform/night-vision');
 
 const bitmapPath = `${__dirname}/assets/house.bmp`;
-
 
 const imageConverter = (path) => {
   fileReader.readAsync(path, (buffer) => {

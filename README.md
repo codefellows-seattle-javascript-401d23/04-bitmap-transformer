@@ -1,3 +1,4 @@
+
 ##Bitmap
 Author: Daniel Shelton, Joanna Coll, Cara Ottmar V 1.0.0
 
@@ -21,3 +22,4 @@ JavaScript, Node, Air BNB linter, package.json, babelrc, debugger, Webstorm, VSC
 
 ##Credits and Collaborations
 Joy, Seth and Ryan G. .
+

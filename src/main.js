@@ -1,6 +1,6 @@
 'use strict';
 
-const imageConverter = module.exports = {};
+//const imageConverter = module.exports = {};
 
 const fs = require('fs');
 const fileReader = require('./lib/reader');

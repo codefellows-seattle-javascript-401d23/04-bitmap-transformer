@@ -7,7 +7,8 @@ const fileHandler = module.exports = {};
 fileHandler.read = (filePath, callback) => {
   return fs.readFile(filePath, (error, buffer) => {
     if (error) {
-      callback(error);
+      logger.log(logger.ERROR, `fileHandler.read: ${error}`);
+      return error;
     }
     const type = process.argv[4];
     return callback(null, buffer, type);

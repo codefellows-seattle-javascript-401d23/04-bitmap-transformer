@@ -22,6 +22,7 @@ fs.readFile(`${__dirname}/__test__/asset/${process.argv[2]}`, (error, buffer) =>
         return logger.log(logger.ERROR, error2);
       }
       logger.log(logger.VERBOSE, data);
+      return data;
     });
   }
 
@@ -31,6 +32,7 @@ fs.readFile(`${__dirname}/__test__/asset/${process.argv[2]}`, (error, buffer) =>
         return logger.log(logger.ERROR, error2);
       }
       logger.log(logger.VERBOSE, data);
+      return data;
     });
   }
 
@@ -40,6 +42,7 @@ fs.readFile(`${__dirname}/__test__/asset/${process.argv[2]}`, (error, buffer) =>
         return logger.log(logger.ERROR, error2);
       }
       logger.log(logger.VERBOSE, data);
+      return data;
     });
   }
 
@@ -49,6 +52,7 @@ fs.readFile(`${__dirname}/__test__/asset/${process.argv[2]}`, (error, buffer) =>
         return logger.log(logger.ERROR, error2);
       }
       logger.log(logger.VERBOSE, data);
+      return data;
     });
   }
 });

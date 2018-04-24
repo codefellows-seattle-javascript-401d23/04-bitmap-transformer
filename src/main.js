@@ -16,15 +16,15 @@ const writeFile = (data, callback) => {
   });
 };
 
-const writeConfirmation = (err) => {
-  if (err) return err;
-  console.log(`*** Confirmed file path here: ${transformedFilePath}`);
-  return undefined;
-};
+// const writeConfirmation = (err) => {
+//   if (err) return err;
+//   console.log(`*** Confirmed file path here: ${transformedFilePath}`);
+//   return undefined;
+// };
 
 fs.readFile(`${__dirname}/assets/${filePath}`, (error, buffer) => {
   if (error) {
     throw error;
   }
-  parseBitmap.parse(buffer, transformMethod, writeFile, writeConfirmation);
+  parseBitmap.parse(buffer, transformMethod, writeFile);
 });

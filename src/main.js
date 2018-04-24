@@ -3,34 +3,26 @@
 const fs = require('fs');
 const fileReader = require('./lib/reader');
 const parseBitmap = require('./lib/parse-bitmap');
+const magenta = require('./lib/transform/magenta');
 const midnight = require('./lib/transform/midnight');
-const whiteout = require('./lib/transform/whiteout');
-const redden = require('./lib/transform/redden');
+const yellowfy = require('./lib/transform/yellowfy');
+const nightVision = require('./lib/transform/night-vision');
 
 const bitmapPath = `${__dirname}/assets/house.bmp`;
 
 const imageConverter = (path) => {
   fileReader.readAsync(path, (buffer) => {
     parseBitmap.parse(buffer, (bitmapObj) => {
-      // console.log(bitmapObj.data.length, bitmapObj.colorTable);
-      //   console.log('raster size', bitmapObj.rasterDataString.length);
-      whiteout.convertImage(bitmapObj, (newObj) => {
-        // console.log('new', newObj.data.length, newObj.colorTable);
-        fs.writeFileSync(`${__dirname}/assets/whiteout.bmp`, newObj.data);
-      });
-      redden.convertImage(bitmapObj, (newObj) => {
-        console.log('original', bitmapObj.data.length);
-        fs.writeFileSync(`${__dirname}/assets/redden.bmp`, newObj.data);
-        console.log('newBuffer', newObj.data.length);
-
-      });
+      // const magentaBitmap = magenta.convertImage(bitmapObj);
+      // fs.writeFileSync(`${__dirname}/assets/magenta.bmp`, magentaBitmap);
+      // const yellowfyBitmap = yellowfy.convertImage(bitmapObj);
+      // fs.writeFileSync(`${__dirname}/assets/yellowfy.bmp`, yellowfyBitmap);
+      const midnightBitmap = midnight.convertImage(bitmapObj);
+      fs.writeFileSync(`${__dirname}/assets/midnight.bmp`, midnightBitmap);
+      // const nightVisionBitmap = nightVision.convertImage(bitmapObj);
+      // fs.writeFileSync(`${__dirname}/assets/night-vision.bmp`, nightVisionBitmap);
     });
   });
 };
 
 imageConverter(bitmapPath);
-
-console.log('done');
-
-// fs.writeFileSync for writing
-// get parsed bitmap to transform

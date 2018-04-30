@@ -51,4 +51,4 @@ const fileReader = (readPath, writePath, transform) => {
   });
 };
 
-//fileReader('./src/__test__/asset/test.bmp', `./src/__test__/asset/test${process.argv[2]}.bmp`, process.argv[3]);
+fileReader('./src/__test__/asset/test.bmp', `./src/__test__/asset/test${process.argv[2]}.bmp`, process.argv[3]);
